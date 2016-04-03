@@ -5,7 +5,6 @@ require 'pusher'
 
 Dotenv.load
 
-
 set :pusher, Pusher::Client.new(
   app_id: ENV["PUSHER_ID"],
   key: ENV["PUSHER_KEY"],

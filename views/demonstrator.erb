@@ -1,49 +1,18 @@
 <!DOCTYPE html>
 <head>
   <title>Pusher Test</title>
+  <link rel="stylesheet" type="text/css" href="css/main.css">
   <script src="https://code.jquery.com/jquery-2.2.2.min.js"   integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI="   crossorigin="anonymous"></script>
   <script type="text/javascript" src="js/paper-full.min.js"></script>
-  <style>
-    html, body {
-      margin: 0;
-    }
-
-    html, body, .canvas, canvas[resize] {
-      width: 100%;
-      height: 100%;
-    }
-  </style>
 </head>
 
 <body>
-<!--   <h1> Admin </h1>
-  <p> hello </p> -->
-  <a id="dog" href="#"> click me </a>
+
   <div class="canvas">
     <canvas id="myCanvas" resize="true"></canvas>
   </div>
-  <script>
-    $(document).ready(function(){
-      $("#dog").click(function(event){
-       $.ajax({ 
-            type: 'POST', 
-            url: '/data', 
-            data: { dog: 'chicken' }, 
-            dataType: 'json',
-            success: function (data) { 
-              $('p').text(data.message)
-            }
-        });
-        event.preventDefault(); // This is for preventing the default behavior of links 
-      });
-    });
-
-  </script>
 
   <script type="text/paperscript" canvas="myCanvas">
-      // Adapted from the following Processing example:
-      // http://processing.org/learning/topics/follow3.html
-
       // The amount of points in the path:
       var points = 25;
 
@@ -61,14 +30,14 @@
         path.add(start + new Point(i * length, 0));
 
       function onMouseDown(event) {
-         $.ajax({ 
-            type: 'POST', 
-            url: '/data', 
-            data: { x: event.point.x, y: event.point.y }, 
-            dataType: 'json',
-            success: function (data) { 
-              console.log("Sent")
-            }
+        $.ajax({ 
+          type: 'POST', 
+          url: '/data', 
+          data: { x: event.point.x, y: event.point.y }, 
+          dataType: 'json',
+          success: function (data) { 
+            console.log("Sent")
+          }
         });
         path.firstSegment.point = event.point;
         for (var i = 0; i < points - 1; i++) {
