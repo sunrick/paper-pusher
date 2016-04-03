@@ -32,7 +32,7 @@
       function onMouseDown(event) {
         $.ajax({ 
           type: 'POST', 
-          url: '/data', 
+          url: '/', 
           data: { x: event.point.x, y: event.point.y }, 
           dataType: 'json',
           success: function (data) { 

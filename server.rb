@@ -20,7 +20,7 @@ get '/demonstrator' do
   erb :demonstrator
 end
 
-post '/data' do
+post '/' do
   settings.pusher.trigger('pusher-fun', 'data', {
     x: params[:x], y: params[:y]
   })
