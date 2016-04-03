@@ -7,6 +7,7 @@
 </head>
 
 <body>
+  <input id="password" type="password" name="password">
 
   <div class="canvas">
     <canvas id="myCanvas" resize="true"></canvas>
@@ -33,7 +34,7 @@
         $.ajax({ 
           type: 'POST', 
           url: '/', 
-          data: { x: event.point.x, y: event.point.y }, 
+          data: { x: event.point.x, y: event.point.y, password: $('#password').val() }, 
           dataType: 'json',
           success: function (data) { 
             console.log("Sent")
