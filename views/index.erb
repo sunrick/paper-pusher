@@ -26,13 +26,6 @@
       encrypted: true
     });
     var channel = pusher.subscribe('pusher-fun');
-
-    channel.bind('data', function(data) {
-      console.log(data.x)
-    });
-
-
-
     
   </script>
 </head>
@@ -74,12 +67,15 @@
         strokeCap: 'round'
       });
 
-      var start = view.center / [10, 1];
+      var point = view.center / [10, 1];
       for (var i = 0; i < points; i++)
-        path.add(start + new Point(i * length, 0));
+        path.add(point + new Point(i * length, 0));
 
       channel.bind('data', function(data) {
-        var point = new Point(parseInt(data.x, 10), parseInt(data.y, 10));
+        point = new Point(parseInt(data.x, 10), parseInt(data.y, 10));
+      });
+
+      function onFrame(){
         path.firstSegment.point = point;
         for (var i = 0; i < points - 1; i++) {
           var segment = path.segments[i];
@@ -89,7 +85,7 @@
           nextSegment.point = segment.point - vector;
         }
         path.smooth({ type: 'continuous' });
-      });
+      }
   </script>
 </body>
 </html>
