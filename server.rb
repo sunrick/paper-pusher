@@ -21,7 +21,7 @@ get '/demonstrator' do
 end
 
 post '/' do
-  if params[:password] = ENV["PASSWORD"]
+  if params[:password] == ENV["PASSWORD"]
     settings.pusher.trigger('pusher-fun', 'data', {
       x: params[:x], y: params[:y]
     })
